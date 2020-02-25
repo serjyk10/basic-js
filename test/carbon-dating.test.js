@@ -9,10 +9,10 @@ const dateSample = require('../src/carbon-dating.js');
 
 describe('Carbon dating', () => {
   // Presence requirement
-    describe ('variable presence', () => {
-      it.optional('function dateSample exists', () => {
-        expect(dateSample).exist;
-      });
+  describe('variable presence', () => {
+    it.optional('function dateSample exists', () => {
+      expect(dateSample).exist;
+    });
   });
 
   //Specific requirements
@@ -26,7 +26,7 @@ describe('Carbon dating', () => {
       assert.equal(dateSample(undefined), false);
       assert.equal(dateSample([3]), false);
       assert.equal(dateSample(['3']), false);
-      assert.equal(dateSample({'3.14': '3dec'}), false);
+      assert.equal(dateSample({ '3.14': '3dec' }), false);
     });
 
     it.optional('should return false if no argument', () => {
@@ -39,7 +39,7 @@ describe('Carbon dating', () => {
     });
   });
 
-  describe('functional requirements ', () => {   
+  describe('functional requirements ', () => {
     it.optional('basic examples', () => {
       assert.equal(dateSample('3'), 13308);
       assert.equal(dateSample('1'), 22392);
@@ -160,5 +160,5 @@ describe('Carbon dating', () => {
       assert.equal(dateSample('-5'), false);
       assert.equal(dateSample('-55.8'), false);
     });
-  });  
+  });
 });
