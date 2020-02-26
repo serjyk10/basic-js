@@ -1,16 +1,18 @@
 module.exports = function transform(arr) {
     if (Array.isArray(arr)) {
-        let newArr = [];
+        let resultArr = [];
 
         for (let i = 0; i < arr.length; i++) {
             if (arr[i] == '--discard-next') {
-                i++;
+                if (i + 1 < arr.length) {
+                    i++;
+                }
                 continue;
             }
 
             if (arr[i] == '--discard-prev') {
-                if (i < arr.length) {
-                    newArr.pop();
+                if (i >= 0) {
+                    resultArr.pop();
                 }
                 continue;
 
@@ -18,7 +20,7 @@ module.exports = function transform(arr) {
 
             if (arr[i] == '--double-next') {
                 if (i + 1 < arr.length) {
-                    newArr.push(arr[i + 1]);
+                    resultArr.push(arr[i + 1]);
                 }
                 continue;
 
@@ -26,14 +28,14 @@ module.exports = function transform(arr) {
 
             if (arr[i] == '--double-prev') {
                 if (i - 1 >= 0) {
-                    newArr.push(arr[i - 1]);
+                    resultArr.push(arr[i - 1]);
                 }
                 continue;
             }
-            newArr.push(arr[i]);
+            resultArr.push(arr[i]);
         }
 
-        return newArr;
+        return resultArr;
     } else {
         throw new Error();
     }
